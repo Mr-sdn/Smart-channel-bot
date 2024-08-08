@@ -7,7 +7,7 @@ _messages_fa = {
     "welcome": "ورود شما به ربات باعث افتخار ماست... 🙆‍♂️\n\nبه بات هوشمند کانال خیلی خوش اومدی 🧑‍🔧🌷"
 }
 _messages_en = {
-    "welcome": "Your entry into the bot makes us proud 🙆‍♂️...\n\nWelcome to the smart bot of the channel 🧑‍🔧🌷"
+    "welcome": "Your entry into the bot makes us proud 🙆‍♂️...\n\nWelcome to smart bot of the channel 🧑‍🔧🌷"
 }
 
 
