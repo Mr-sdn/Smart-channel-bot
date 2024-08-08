@@ -3,8 +3,12 @@ import json
 fa: dict
 en: dict
 
-_messages_fa = {}
-_messages_en = {}
+_messages_fa = {
+    "welcome": "ورود شما به ربات باعث افتخار ماست 🙆‍♂️\nبه بات هوشمند کانال خیلی خوش اومدی 🧑‍🔧🌷"
+}
+_messages_en = {
+    "welcome": "Your entry into the bot makes us proud 🙆‍♂️\nWelcome to the smart bot of the channel 🧑‍🔧🌷"
+}
 
 
 def add_language_en() -> dict:
