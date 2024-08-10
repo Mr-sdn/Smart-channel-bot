@@ -1,3 +1,6 @@
 __pycache__/
 *.log
 *.session
+Database/__pycache__/
+Keyboards/__pycache__/
+Message/__pycache__/
