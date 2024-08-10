@@ -4,3 +4,4 @@ __pycache__/
 Database/__pycache__/
 Keyboards/__pycache__/
 Message/__pycache__/
+*.session-journal
