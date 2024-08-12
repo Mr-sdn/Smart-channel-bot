@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, InputTextMessageContent
 from Messages import en # you can import any language in Message pkg
 from Keyboards import keyboard_en # you can import any keyboard in Keyboards pkg
 from Database.database import Initial_main_table, check_new_user, add_new_user
@@ -22,8 +22,13 @@ async def handle_welcome(client: Client, message: Message) -> None:
     user_id = message.chat.id
     if not await check_new_user(user_id):
         await add_new_user(user_id)
-    await message.reply(en["welcome"], quote=True ,reply_markup = keyboard_en.main_menu)
+    await message.reply(en["welcome"], reply_markup = keyboard_en.main_menu)
 
+
+@app.on_message(filters.regex(r"(^Channel settings 📣$)|(^تنظیمات کانال 📣$)"))
+async def handle_channel_settings(client: Client, message: Message) -> None:
+    await message.reply(en["channel_settings"], reply_markup = keyboard_en.chennel_settings_menu)
+     
 
 if __name__ == "__main__":
     Initial_main_table()
