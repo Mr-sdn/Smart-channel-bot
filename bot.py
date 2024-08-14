@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, InputTextMessageContent, CallbackQuery
 from Messages import en # you can import any language in Message pkg
 from Keyboards import keyboard_en # you can import any keyboard in Keyboards pkg
-from Database.database import Initial_main_table, check_new_user, add_new_user
+from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table
 
 
 
@@ -24,6 +24,8 @@ async def handle_welcome(client: Client, message: Message) -> None:
     user_id = message.chat.id
     if not await check_new_user(user_id):
         await add_new_user(user_id)
+        await initial_user_table(user_id)
+
     await message.reply(en["welcome"], reply_markup = keyboard_en.main_menu)
 
 
@@ -48,5 +50,5 @@ async def handle_add_query(client: Client, query: CallbackQuery):
 
 
 if __name__ == "__main__":
-    Initial_main_table()
+    initial_main_table()
     app.run()
