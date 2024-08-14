@@ -38,19 +38,6 @@ def initial_main_table() -> None:
     except ProgrammingError:
         return
     
-    
-async def initial_user_table(user_id: int) -> None:
-    # Create the user table by name user_id
-    connection = await connect()
-    cursor = connection.cursor()
-    target_id = user_id
-    query_create_table_user = f"""CREATE TABLE `smart`.`{user_id}` 
-    (`channels` VARCHAR(255) NOT NULL , `files` MEDIUMTEXT NOT NULL , `time` FLOAT NULL DEFAULT NULL , `repeated sending` VARCHAR(255) NOT NULL DEFAULT 'off' , `random sending` VARCHAR(255) NOT NULL DEFAULT 'off' ) ENGINE = InnoDB;"""
-    cursor.execute(query_create_table_user)
-    connection.commit()
-    cursor.close()
-    connection.close()
-
 
 async def check_new_user(user_id: int) -> bool:
     
@@ -81,3 +68,43 @@ async def add_new_user(user_id: int) -> None:
     cursor.close()
     connection.close()
 
+
+async def initial_user_table(user_id: int) -> None:
+    # Create the user table by name user_id
+    connection = await connect()
+    cursor = connection.cursor()
+    target_id = user_id
+    query_create_table_user = f"""CREATE TABLE `smart`.`{user_id}` 
+    (`channels` VARCHAR(255) NOT NULL , `files` MEDIUMTEXT NOT NULL , `time` FLOAT NULL DEFAULT NULL , `repeated sending` VARCHAR(255) NOT NULL DEFAULT 'off' , `random sending` VARCHAR(255) NOT NULL DEFAULT 'off' ) ENGINE = InnoDB;"""
+    cursor.execute(query_create_table_user)
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+async def add_channel(user_id: int, channel_id: str) -> None:
+    connection = await connect()
+    cursor = connection.cursor()
+    channel_id = channel_id
+    query_insert_channel = f"""INSERT INTO `{user_id}` (`channels`, `files`, `time`, `repeated sending`, `random sending`) VALUES ('{channel_id}', '', NULL, 'off', 'off');"""
+    cursor.execute(query_insert_channel)
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+async def check_new_channel(user_id: int, channel_id: str) -> None:
+    # check bot new user
+    connection = await connect()
+    cursor = connection.cursor()
+    target_id = channel_id
+    query_exist = f"SELECT EXISTS(SELECT 1 FROM `{user_id}` WHERE channels = {channel_id})"
+    cursor.execute(query_exist)
+    exists = cursor.fetchone()[0]
+    cursor.close()
+    connection.close()
+    if exists:
+        return True
+    else:
+        return False
+    
