@@ -9,7 +9,11 @@ main_menu = ReplyKeyboardMarkup([
 chennel_settings_menu =  InlineKeyboardMarkup(
     [
         [InlineKeyboardButton("Channels 📢", switch_inline_query_current_chat = "list_of_channels")],
-        [InlineKeyboardButton("add channel ➕", callback_data = "add_channel")],
-        [InlineKeyboardButton("remove channel ➖", callback_data = "remove_channel")]
+        [InlineKeyboardButton("Add channel ➕", callback_data = "add_channel")],
+        [InlineKeyboardButton("Remove channel ➖", callback_data = "remove_channel")]
     ]
 )
+
+Cancel_operation_menu = ReplyKeyboardMarkup([
+        [KeyboardButton("Cancel operation ❌")],
+    ], resize_keyboard=True)

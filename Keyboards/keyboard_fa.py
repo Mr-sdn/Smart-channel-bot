@@ -14,3 +14,7 @@ chennel_settings_menu =  InlineKeyboardMarkup(
         [InlineKeyboardButton("حذف کانال ➖", callback_data = "remove_channel")]
     ]
 )
+
+Cancel_operation_menu = ReplyKeyboardMarkup([
+        [KeyboardButton("لغو عملیات ❌")],
+    ], resize_keyboard=True)
