@@ -38,6 +38,19 @@ def initial_main_table() -> None:
     except ProgrammingError:
         return
     
+    
+async def initial_user_table(user_id: int) -> None:
+    # Create the user table by name user_id
+    connection = await connect()
+    cursor = connection.cursor()
+    target_id = user_id
+    query_create_table_user = f"""CREATE TABLE `smart`.`{user_id}` 
+    (`channels` VARCHAR(255) NOT NULL , `files` MEDIUMTEXT NOT NULL , `time` FLOAT NULL DEFAULT NULL , `repeated sending` VARCHAR(255) NOT NULL DEFAULT 'off' , `random sending` VARCHAR(255) NOT NULL DEFAULT 'off' ) ENGINE = InnoDB;"""
+    cursor.execute(query_create_table_user)
+    connection.commit()
+    cursor.close()
+    connection.close()
+
 
 async def check_new_user(user_id: int) -> bool:
     
