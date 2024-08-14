@@ -18,7 +18,7 @@ async def connect():
     return connection
 
 
-def Initial_main_table() -> None:
+def initial_main_table() -> None:
 
     # Create the main table by name users
     try:
