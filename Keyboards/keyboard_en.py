@@ -16,4 +16,4 @@ chennel_settings_menu =  InlineKeyboardMarkup(
 
 Cancel_operation_menu = ReplyKeyboardMarkup([
         [KeyboardButton("Cancel operation ❌")],
-    ], resize_keyboard=True)
+    ], resize_keyboard=True, placeholder = "id or username")
