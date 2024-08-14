@@ -1,10 +1,8 @@
-from pyrogram import Client, filters
+from pyrogram import Client, filters, errors,enums
 from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, InputTextMessageContent, CallbackQuery
 from Messages import en # you can import any language in Message pkg
 from Keyboards import keyboard_en # you can import any keyboard in Keyboards pkg
-from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table
-
-
+from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel
 
 api_id = 29071441
 api_hash = "dc0938f910a323e10afc005c4ffe9a68"
@@ -34,19 +32,46 @@ async def handle_channel_settings(client: Client, message: Message) -> None:
     await message.reply(en["channel_settings"], reply_markup = keyboard_en.chennel_settings_menu)
 
 
+@app.on_message(filters.text & filters.private)
+async def handle_any_text(client: Client, message: Message) -> None:
+    user_id = message.chat.id
+    text = message.text
+    if (message_state := user_state.setdefault(user_id, False)):
+        if message_state == "Waiting for the send channel":
+            try:
+                async for member in client.get_chat_members(text, limit=1):
+                    pass
+
+                channel = await client.get_chat(text)
+                channel_id = str(channel.id)
+
+                if channel.type == enums.ChatType.CHANNEL:
+                    if not await check_new_channel(user_id, channel_id):
+                        await add_channel(user_id, channel_id)
+                        user_state.pop(user_id)
+                        await message.reply(en["success_adding_channel"], reply_markup = keyboard_en.main_menu)
+                    else:
+                        await message.reply(en["channel_exist"])
+                else:
+                    await message.reply(en["support_only_channel"])
+            except errors.exceptions.forbidden_403.ChatAdminRequired:
+                await message.reply(en["bot_not_admin_for_add_channel"])
+            except (errors.exceptions.bad_request_400.UsernameNotOccupied, errors.exceptions.bad_request_400.UsernameInvalid,
+                     errors.exceptions.bad_request_400.ChannelInvalid, errors.bad_request_400.PeerIdInvalid):
+                await message.reply(en["username_or_id_invalid"])
+
+
+
+
+
+
 @app.on_callback_query(filters.regex(r"^add_"))
-async def handle_add_query(client: Client, query: CallbackQuery):
+async def handle_add_query(client: Client, query: CallbackQuery) -> None:
     result = query.data.split("_")[1]
-    id = query.from_user.id
+    user_id = query.from_user.id
     if result == "channel":
         await query.message.reply(en["get_channel_id"], reply_markup = keyboard_en.Cancel_operation_menu)
-        user_state[id] = "Waiting for the send channel"
-
-
-
-
-
-
+        user_state[user_id] = "Waiting for the send channel"
 
 
 if __name__ == "__main__":
