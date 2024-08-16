@@ -13,7 +13,9 @@ _messages_fa = {
     "success_adding_channel": "کانال مورد نظر با موفقیت افزوده شد ✅",
     "support_only_channel": "شما مجاز هستید فقط کانال اضافه کنید لطفا آن را دوباره بفرست 🔔",
     "success_cancel_operation": "عملیات با موفقیت لغو شد 🔕",
-    "channel_dont_exist":  "این کانال در حال حاضر وجود ندارد لطفا مجددا امتحان کنید ⛔🔄"
+    "channel_dont_exist":  "این کانال در حال حاضر وجود ندارد لطفا مجددا امتحان کنید ⛔🔄",
+    "success_removing_channel": "کانال شما با موفقیت حذف شد ✅"
+
 
 }
 _messages_en = {
@@ -26,7 +28,8 @@ _messages_en = {
     "success_adding_channel": "The desired channel has been successfully added ✅",
     "support_only_channel": "You are only allowed to add channel, send it again 🔔",
     "success_cancel_operation": "The operation was successfully cancelled 🔕",
-    "channel_dont_exist": "This channel already dont exists, please try again ⛔🔄"
+    "channel_dont_exist": "This channel already dont exists, please try again ⛔🔄",
+    "success_removing_channel": "Your channel has been successfully deleted ✅"
     
 }
 
