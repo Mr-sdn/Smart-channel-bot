@@ -1,4 +1,13 @@
 {
     "welcome": "Your entry into the bot makes us proud 🙆‍♂️...\n\nWelcome to smart bot of the channel 🧑‍🔧🌷",
-    "channel_settings": "You can set settings for your channel by selecting your channel from the **channels** section 👁️🛠️...."
+    "channel_settings": "You can set settings for your channel by selecting your channel from the **channels** section 👁️🛠️....",
+    "get_channel_id": "My dear friend, please send me the username of the channel 🆔",
+    "bot_not_admin_for_add_channel": "In order for the bot to perform different operations, please admin the bot to your **channel** and then add the channel again 🤖",
+    "username_or_id_invalid": "My dear friend, the username of the channel is wrong, please send it again 🔄☑️",
+    "channel_exist": "This channel already exists, please try again ⛔🔄",
+    "success_adding_channel": "The desired channel has been successfully added ✅",
+    "support_only_channel": "You are only allowed to add channel, send it again 🔔",
+    "success_cancel_operation": "The operation was successfully cancelled 🔕",
+    "channel_dont_exist": "This channel already dont exists, please try again ⛔🔄",
+    "success_removing_channel": "Your channel has been successfully deleted ✅"
 }
