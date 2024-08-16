@@ -12,7 +12,8 @@ _messages_fa = {
     "channel_exist": "این کانال در حال حاضر وجود دارد لطفا مجددا امتحان کنید ⛔🔄",
     "success_adding_channel": "کانال مورد نظر با موفقیت افزوده شد ✅",
     "support_only_channel": "شما مجاز هستید فقط کانال اضافه کنید لطفا آن را دوباره بفرست 🔔",
-    "success_cancel_operation": "عملیات با موفقیت لغو شد 🔕"
+    "success_cancel_operation": "عملیات با موفقیت لغو شد 🔕",
+    "channel_dont_exist":  "این کانال در حال حاضر وجود ندارد لطفا مجددا امتحان کنید ⛔🔄"
 
 }
 _messages_en = {
@@ -24,7 +25,8 @@ _messages_en = {
     "channel_exist": "This channel already exists, please try again ⛔🔄",
     "success_adding_channel": "The desired channel has been successfully added ✅",
     "support_only_channel": "You are only allowed to add channel, send it again 🔔",
-    "success_cancel_operation": "The operation was successfully cancelled 🔕"
+    "success_cancel_operation": "The operation was successfully cancelled 🔕",
+    "channel_dont_exist": "This channel already dont exists, please try again ⛔🔄"
     
 }
 
