@@ -31,12 +31,13 @@ async def handle_welcome(client: Client, message: Message) -> None:
 async def handle_channel_settings(client: Client, message: Message) -> None:
     await message.reply(en["channel_settings"], reply_markup = keyboard_en.chennel_settings_menu)
 
+
 @app.on_message(filters.regex(r"(^Cancel operation ❌$)|(^لغو عملیات ❌$)"))
 async def handle_Cancel_operation(client: Client, message: Message) -> None:
     user_id = message.chat.id
     if user_id in user_state:
         user_state.pop(user_id)
-        await message.reply(en["success_cancel_operation"], reply_markup = keyboard_en.main_menu)
+    await message.reply(en["success_cancel_operation"], reply_markup = keyboard_en.main_menu)
 
 
 @app.on_message(filters.text & filters.private)
@@ -83,8 +84,6 @@ async def handle_any_text(client: Client, message: Message) -> None:
                 await message.reply(en["username_or_id_invalid"])
 
 
-
-
 @app.on_callback_query(filters.regex(r"^remove_"))
 async def handle_add_query(client: Client, query: CallbackQuery) -> None:
     result = query.data.split("_")[1]
@@ -92,6 +91,7 @@ async def handle_add_query(client: Client, query: CallbackQuery) -> None:
     if result == "channel":
         await query.message.reply(en["get_channel_id"], reply_markup = keyboard_en.Cancel_operation_menu)
         user_state[user_id] = "Waiting for remove channel"
+
 
 @app.on_callback_query(filters.regex(r"^add_"))
 async def handle_add_query(client: Client, query: CallbackQuery) -> None:
