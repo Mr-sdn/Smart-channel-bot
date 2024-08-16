@@ -3,6 +3,6 @@ __pycache__/
 *.session
 Database/__pycache__/
 Keyboards/__pycache__/
-Message/__pycache__/
+Messages/__pycache__/
 *.session-journal
-Message/*.json
+Messages/*.json
