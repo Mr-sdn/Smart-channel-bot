@@ -85,7 +85,6 @@ async def initial_user_table(user_id: int) -> None:
 async def add_channel(user_id: int, channel_id: str) -> None:
     connection = await connect()
     cursor = connection.cursor()
-    channel_id = channel_id
     query_insert_channel = f"""INSERT INTO `{user_id}` (`channels`, `files`, `time`, `repeated sending`, `random sending`) VALUES ('{channel_id}', '', NULL, 'off', 'off');"""
     cursor.execute(query_insert_channel)
     connection.commit()
@@ -93,7 +92,17 @@ async def add_channel(user_id: int, channel_id: str) -> None:
     connection.close()
 
 
-async def check_new_channel(user_id: int, channel_id: str) -> None:
+async def remove_channel(user_id: int, channel_id: str) -> None:
+    connection = await connect()
+    cursor = connection.cursor()
+    query_remove_channel = f"""DELETE FROM `{user_id}` WHERE channels = '{channel_id}'"""
+    cursor.execute(query_remove_channel)
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+async def check_new_channel(user_id: int, channel_id: str) -> bool:
     # check bot new user
     connection = await connect()
     cursor = connection.cursor()
