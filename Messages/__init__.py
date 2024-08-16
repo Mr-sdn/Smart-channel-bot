@@ -6,9 +6,9 @@ en: dict
 _messages_fa = {
     "welcome": "ورود شما به ربات باعث افتخار ماست... 🙆‍♂️\n\nبه بات هوشمند کانال خیلی خوش اومدی 🧑‍🔧🌷",
     "channel_settings": "شما می توانید با انتخاب کانال خود از قسمت **کانال ها** تنظیمات کانال خود را انجام دهید 👁️🛠️....",
-    "get_channel_id": "دوست عزیزم لطفا آیدی عددی کانال یا یوزرنیم آن را برام بفرست 🆔",
+    "get_channel_id": "دوست عزیزم لطفا یوزرنیم کانال را برام بفرست 🆔",
     "bot_not_admin_for_add_channel": "برای اینکه ربات بتواند عملیات متفاوتی را انجام دهد، لطفا ربات را در **کانال** خود ادمین کنید و سپس دوباره کانال را اضافه کنید 🤖",
-    "username_or_id_invalid": "دوست عزیزم یوزرنیم یا آیدی عددی کانال اشتباه است لطفا آن دوباره بفرست 🔄☑️",
+    "username_or_id_invalid": "دوست عزیزم یوزرنیم کانال اشتباه است لطفا آن دوباره بفرست 🔄☑️",
     "channel_exist": "این کانال در حال حاضر وجود دارد لطفا مجددا امتحان کنید ⛔🔄",
     "success_adding_channel": "کانال مورد نظر با موفقیت افزوده شد ✅",
     "support_only_channel": "شما مجاز هستید فقط کانال اضافه کنید لطفا آن را دوباره بفرست 🔔",
@@ -18,9 +18,9 @@ _messages_fa = {
 _messages_en = {
     "welcome": "Your entry into the bot makes us proud 🙆‍♂️...\n\nWelcome to smart bot of the channel 🧑‍🔧🌷",
     "channel_settings": "You can set settings for your channel by selecting your channel from the **channels** section 👁️🛠️....",
-    "get_channel_id": "My dear friend, please send me the numerical ID of the channel or its username 🆔",
+    "get_channel_id": "My dear friend, please send me the username of the channel 🆔",
     "bot_not_admin_for_add_channel": "In order for the bot to perform different operations, please admin the bot to your **channel** and then add the channel again 🤖",
-    "username_or_id_invalid": "My dear friend, the username or numeric ID of the channel is wrong, please send it again 🔄☑️",
+    "username_or_id_invalid": "My dear friend, the username of the channel is wrong, please send it again 🔄☑️",
     "channel_exist": "This channel already exists, please try again ⛔🔄",
     "success_adding_channel": "The desired channel has been successfully added ✅",
     "support_only_channel": "You are only allowed to add channel, send it again 🔔",
