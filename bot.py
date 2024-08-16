@@ -2,7 +2,7 @@ from pyrogram import Client, filters, errors,enums
 from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, InputTextMessageContent, CallbackQuery
 from Messages import en # you can import any language in Message pkg
 from Keyboards import keyboard_en # you can import any keyboard in Keyboards pkg
-from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel
+from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel, remove_channel
 
 api_id = 29071441
 api_hash = "dc0938f910a323e10afc005c4ffe9a68"
@@ -44,7 +44,7 @@ async def handle_any_text(client: Client, message: Message) -> None:
     user_id = message.chat.id
     text = message.text
     if (message_state := user_state.setdefault(user_id, False)):
-        if message_state == "Waiting for the send channel":
+        if message_state == "Waiting for add channel":
             try:
                 async for member in client.get_chat_members(text, limit=1):
                     pass
@@ -67,10 +67,31 @@ async def handle_any_text(client: Client, message: Message) -> None:
                      errors.exceptions.bad_request_400.ChannelInvalid, errors.bad_request_400.PeerIdInvalid):
                 await message.reply(en["username_or_id_invalid"])
 
+        elif message_state == "Waiting for remove channel":
+            try:
+                channel = await client.get_chat(text)
+                channel_id = str(channel.id)
+                if not await check_new_channel(user_id, channel_id):
+                    await message.reply(en["channel_dont_exist"])
+                else:
+                    await remove_channel(user_id, channel_id)
+                    user_state.pop(user_id)
+                    await message.reply(en["success_removing_channel"], reply_markup = keyboard_en.main_menu)
+
+            except (errors.exceptions.bad_request_400.UsernameNotOccupied, errors.exceptions.bad_request_400.UsernameInvalid,
+                     errors.exceptions.bad_request_400.ChannelInvalid, errors.bad_request_400.PeerIdInvalid):
+                await message.reply(en["username_or_id_invalid"])
 
 
 
 
+@app.on_callback_query(filters.regex(r"^remove_"))
+async def handle_add_query(client: Client, query: CallbackQuery) -> None:
+    result = query.data.split("_")[1]
+    user_id = query.from_user.id
+    if result == "channel":
+        await query.message.reply(en["get_channel_id"], reply_markup = keyboard_en.Cancel_operation_menu)
+        user_state[user_id] = "Waiting for remove channel"
 
 @app.on_callback_query(filters.regex(r"^add_"))
 async def handle_add_query(client: Client, query: CallbackQuery) -> None:
@@ -78,7 +99,7 @@ async def handle_add_query(client: Client, query: CallbackQuery) -> None:
     user_id = query.from_user.id
     if result == "channel":
         await query.message.reply(en["get_channel_id"], reply_markup = keyboard_en.Cancel_operation_menu)
-        user_state[user_id] = "Waiting for the send channel"
+        user_state[user_id] = "Waiting for add channel"
 
 
 if __name__ == "__main__":
