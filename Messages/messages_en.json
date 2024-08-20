@@ -9,5 +9,6 @@
     "support_only_channel": "You are only allowed to add channel, send it again 🔔",
     "success_cancel_operation": "The operation was successfully cancelled 🔕",
     "channel_dont_exist": "This channel already dont exists, please try again ⛔🔄",
-    "success_removing_channel": "Your channel has been successfully deleted ✅"
+    "success_removing_channel": "Your channel has been successfully deleted ✅",
+    "remove_bot_admin_by_user": "Probably because you removed the robot from the channel admin, it is not possible to display the list. To display the list again, before removing the robot from being an admin, remove it from the remove channel section Then add it again 🤖❗"
 }

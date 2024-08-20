@@ -7,3 +7,4 @@ Messages/__pycache__/
 *.session-journal
 Messages/keyboard_fa
 Messages/keyboard_en
+*.json
