@@ -101,21 +101,11 @@ async def handle_add_query(client: Client, query: CallbackQuery) -> None:
         user_state[user_id] = "Waiting for add channel"
 
 
-@app.on_callback_query(filters.regex(r"^set_"))
-async def handle_set_query(client: Client, query: CallbackQuery) -> None:
-    result = query.data.split("_")[1]
-    print(query)
-    if result == "time":
-        time_repeated = await get_time(user_id, ) 
-        await query.message.reply(en["Repeated_sending_time"], keyboard_en.send_menu_setting_time(5))
-
-
 @app.on_inline_query(filters.regex(r"^list_of_channels"))
 async def handle_show_channels(client: Client, query: CallbackQuery) -> None:
     user_id = query.from_user.id
     results = []
     channels_id = await get_channels(user_id)
-    print(query)
     for chat_id in channels_id:
         try:
             chat = await client.get_chat(chat_id)
