@@ -116,7 +116,7 @@ async def check_new_channel(user_id: int, channel_id: str) -> bool:
         return False
 
 
-async def get_channels(user_id: int):
+async def get_channels(user_id: int) -> list:
     # get channels from database
     connection = await connect()
     cursor = connection.cursor()
@@ -129,3 +129,14 @@ async def get_channels(user_id: int):
     cursor.close()
     connection.close()
     return list_channels
+
+async def get_time(user_id: int, channel_id: str) -> float | None:
+    # get repeated sending time from database
+    connection = await connect()
+    cursor = connection.cursor()
+    get_time_query = f"""SELECT `time` FROM `{user_id}` WHERE channels = """
+    cursor.execute(get_time_query)
+    result = cursor.fetchall()
+    return result[0][0]
+
+print(asyncio.run(get_time(431841117, "-1002219151490")))
