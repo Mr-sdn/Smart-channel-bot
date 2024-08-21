@@ -2,7 +2,7 @@ from pyrogram import Client, filters, errors,enums
 from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, InputTextMessageContent, CallbackQuery
 from Messages import en # you can import any language in Message pkg
 from Keyboards import keyboard_en # you can import any keyboard in Keyboards pkg
-from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel, remove_channel
+from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel, remove_channel, get_channels
 
 api_id = 29071441
 api_hash = "dc0938f910a323e10afc005c4ffe9a68"
@@ -100,6 +100,32 @@ async def handle_add_query(client: Client, query: CallbackQuery) -> None:
     if result == "channel":
         await query.message.reply(en["get_channel_id"], reply_markup = keyboard_en.Cancel_operation_menu)
         user_state[user_id] = "Waiting for add channel"
+
+
+@app.on_inline_query(filters.regex(r"^list_of_channels"))
+async def handle_show_channels(client: Client, query: CallbackQuery) -> None:
+    user_id = query.from_user.id
+    results = []
+    channels_id = await get_channels(user_id)
+    print(query)
+    for chat_id in channels_id:
+        try:
+            chat = await client.get_chat(chat_id)
+            result = InlineQueryResultArticle(
+            title = chat.full_name,
+            input_message_content=InputTextMessageContent(f"**settings of {chat.title} channel**"),
+            description=f"@{chat.username}" if chat.username else "No Username",
+            reply_markup = keyboard_en.setting_menu_channel
+        )
+        except errors.exceptions.bad_request_400.PeerIdInvalid:
+            result = InlineQueryResultArticle(
+            title="no result ❌",
+            input_message_content=InputTextMessageContent(f"**{en["remove_bot_admin_by_user"]}**"),
+            description = en["remove_bot_admin_by_user"],
+        )
+            
+        results.append(result)
+    await query.answer(results, cache_time=1)
 
 
 if __name__ == "__main__":
