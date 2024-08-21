@@ -18,3 +18,9 @@ chennel_settings_menu =  InlineKeyboardMarkup(
 Cancel_operation_menu = ReplyKeyboardMarkup([
         [KeyboardButton("لغو عملیات ❌")],
     ], resize_keyboard=True, placeholder = "id or username")
+
+setting_menu_channel = InlineKeyboardMarkup(
+    [
+        [InlineKeyboardButton("تنظیم تایم ارسال مکرر ⏰", callback_data = "set_time")],
+    ]
+)

@@ -16,4 +16,10 @@ chennel_settings_menu =  InlineKeyboardMarkup(
 
 Cancel_operation_menu = ReplyKeyboardMarkup([
         [KeyboardButton("Cancel operation ❌")],
-    ], resize_keyboard=True, placeholder = "id or username")
+    ], resize_keyboard = True, placeholder = "id or username")
+
+setting_menu_channel = InlineKeyboardMarkup(
+[
+    [InlineKeyboardButton("Repeated sending time setting ⏰", callback_data = "set_time")]
+]
+)
