@@ -23,3 +23,10 @@ setting_menu_channel = InlineKeyboardMarkup(
     [InlineKeyboardButton("Repeated sending time setting ⏰", callback_data = "set_time")]
 ]
 )
+async def send_menu_setting_time(time: float):
+
+    keyboard_setting_time = InlineKeyboardMarkup([
+            [InlineKeyboardButton("➖", callback_data="decrease_en"), InlineKeyboardButton(f"{time} second", callback_data="not"), InlineKeyboardButton("➕", callback_data="increase_en")],
+            [InlineKeyboardButton("back ⬅️", callback_data="back_en")]
+    ])
+    return keyboard_setting_time
