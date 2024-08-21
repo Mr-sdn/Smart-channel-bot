@@ -4,13 +4,10 @@ from Messages import en # you can import any language in Message pkg
 from Keyboards import keyboard_en # you can import any keyboard in Keyboards pkg
 from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel, remove_channel, get_channels, get_time
 import re
-api_id = 29071441
-api_hash = "dc0938f910a323e10afc005c4ffe9a68"
-bot_token = "2071989963:AAH_9mOgQ_YQVC-Og5p64jFg2-NGH3PbWVU"
-proxy = {
-    "scheme": "socks5",  # "socks4", "socks5" and "http" are supported
-    "hostname": "127.0.0.1",  # proxy ip
-    "port": 8086}
+api_id = ""
+api_hash = ""
+bot_token = ""
+proxy = {}
 
 app = Client("smart-bot-channel", api_id=api_id, api_hash=api_hash, bot_token = bot_token, proxy=proxy)
 
