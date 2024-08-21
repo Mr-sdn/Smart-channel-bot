@@ -15,7 +15,8 @@ _messages_fa = {
     "success_cancel_operation": "عملیات با موفقیت لغو شد 🔕",
     "channel_dont_exist":  "این کانال در حال حاضر وجود ندارد لطفا مجددا امتحان کنید ⛔🔄",
     "success_removing_channel": "کانال شما با موفقیت حذف شد ✅",
-    "remove_bot_admin_by_user": "احتمالاً چون ربات را از ادمین کانال حذف کرده اید، امکان نمایش لیست وجود ندارد. برای نمایش مجدد لیست، قبل از حذف ربات از ادمین، آن را از قسمت حذف کانال حذف کنید و سپس مجددا آن را اضافه کنید🤖❗"
+    "remove_bot_admin_by_user": "احتمالاً چون ربات را از ادمین کانال حذف کرده اید، امکان نمایش لیست وجود ندارد. برای نمایش مجدد لیست، قبل از حذف ربات از ادمین، آن را از قسمت حذف کانال حذف کنید و سپس مجددا آن را اضافه کنید🤖❗",
+    "Repeated_sending_time": "شما میتوانید تایم مورد نظر خود را برای ارسال مکرر از منوی شیشه ای زیر تنظیم کنید 🔔⏰"
 
 
 }
@@ -31,7 +32,8 @@ _messages_en = {
     "success_cancel_operation": "The operation was successfully cancelled 🔕",
     "channel_dont_exist": "This channel already dont exists, please try again ⛔🔄",
     "success_removing_channel": "Your channel has been successfully deleted ✅",
-    "remove_bot_admin_by_user":"Probably because you removed the robot from the channel admin, it is not possible to display the list. To display the list again, before removing the robot from being an admin, remove it from the remove channel section Then add it again 🤖❗"
+    "remove_bot_admin_by_user":"Probably because you removed the robot from the channel admin, it is not possible to display the list. To display the list again, before removing the robot from being an admin, remove it from the remove channel section Then add it again 🤖❗",
+    "Repeated_sending_time": "You can set the desired time for repeated sending from the glass menu below 🔔⏰"
     
 }
 
