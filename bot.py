@@ -2,8 +2,8 @@ from pyrogram import Client, filters, errors,enums
 from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, InputTextMessageContent, CallbackQuery
 from Messages import en # you can import any language in Message pkg
 from Keyboards import keyboard_en # you can import any keyboard in Keyboards pkg
-from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel, remove_channel, get_channels
-
+from Database.database import initial_main_table, check_new_user, add_new_user, initial_user_table, add_channel, check_new_channel, remove_channel, get_channels, get_time
+import re
 api_id = 29071441
 api_hash = "dc0938f910a323e10afc005c4ffe9a68"
 bot_token = "2071989963:AAH_9mOgQ_YQVC-Og5p64jFg2-NGH3PbWVU"
@@ -38,7 +38,6 @@ async def handle_Cancel_operation(client: Client, message: Message) -> None:
     if user_id in user_state:
         user_state.pop(user_id)
     await message.reply(en["success_cancel_operation"], reply_markup = keyboard_en.main_menu)
-
 
 @app.on_message(filters.text & filters.private)
 async def handle_any_text(client: Client, message: Message) -> None:
@@ -102,6 +101,15 @@ async def handle_add_query(client: Client, query: CallbackQuery) -> None:
         user_state[user_id] = "Waiting for add channel"
 
 
+@app.on_callback_query(filters.regex(r"^set_"))
+async def handle_set_query(client: Client, query: CallbackQuery) -> None:
+    result = query.data.split("_")[1]
+    print(query)
+    if result == "time":
+        time_repeated = await get_time(user_id, ) 
+        await query.message.reply(en["Repeated_sending_time"], keyboard_en.send_menu_setting_time(5))
+
+
 @app.on_inline_query(filters.regex(r"^list_of_channels"))
 async def handle_show_channels(client: Client, query: CallbackQuery) -> None:
     user_id = query.from_user.id
@@ -113,7 +121,7 @@ async def handle_show_channels(client: Client, query: CallbackQuery) -> None:
             chat = await client.get_chat(chat_id)
             result = InlineQueryResultArticle(
             title = chat.full_name,
-            input_message_content=InputTextMessageContent(f"**settings of {chat.title} channel**"),
+            input_message_content=InputTextMessageContent(f"**settings of {chat.title} channel with id: `{chat_id}`**"),
             description=f"@{chat.username}" if chat.username else "No Username",
             reply_markup = keyboard_en.setting_menu_channel
         )

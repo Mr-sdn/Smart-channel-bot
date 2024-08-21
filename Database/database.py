@@ -134,9 +134,7 @@ async def get_time(user_id: int, channel_id: str) -> float | None:
     # get repeated sending time from database
     connection = await connect()
     cursor = connection.cursor()
-    get_time_query = f"""SELECT `time` FROM `{user_id}` WHERE channels = """
+    get_time_query = f"""SELECT `time` FROM `{user_id}` WHERE channels = {channel_id}"""
     cursor.execute(get_time_query)
     result = cursor.fetchall()
     return result[0][0]
-
-print(asyncio.run(get_time(431841117, "-1002219151490")))

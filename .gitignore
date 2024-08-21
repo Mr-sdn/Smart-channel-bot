@@ -5,6 +5,3 @@ Database/__pycache__/
 Keyboards/__pycache__/
 Messages/__pycache__/
 *.session-journal
-Messages/keyboard_fa
-Messages/keyboard_en
-*.json
